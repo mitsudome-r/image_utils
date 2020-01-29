@@ -1,0 +1,13 @@
+<launch>
+
+<arg name="file_path" default="camera_calibration.yaml"/>
+<arg name="topic_name" default="camera_info"/>
+<arg name="frame_id" default="camera"/> 
+<node pkg="image_utils" type="camera_info_publisher" name="camera_info_publisher">
+  <rosparam command="load" file="$(arg file_path)"/>
+  <param name="frame_id" value="$(arg frame_id)"/>
+  <remap from="~output/camera_info" to="$(arg topic_name)"/>
+</node>
+
+
+</launch>
